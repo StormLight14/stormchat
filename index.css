@@ -2,3 +2,25 @@ body {
     background-color: #1b1b22;
     color: #FFFFFF;
 }
+
+.doom {
+  width: 80vw;
+  height: 50vw;
+  border: none;
+}
+
+.minecraft {
+  width: 80vw;
+  height: 50vw;
+  border: none;
+}
+
+.rick {
+  width: 30vw;
+  height: 50vw;
+}
+
+.slope {
+  width: 80vw;
+  height: 50vw;
+}
