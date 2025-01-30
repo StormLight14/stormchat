@@ -7,37 +7,41 @@
   <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-  <div id="login-form">
-    <form name="login" id="login">
-      <div>
-        <p>Username:</p>
-        <input type="text" name="username-login">
-      </div>
-      <div>
-        <p>Password:</p>
-        <input type="password" name="password-login">
-      </div>
-      <input type="submit" value="Login">
-    </form>
+  <div class="forms">
+    <div id="register-form">
+      <form name="register" id="register">
+        <div>
+          <p>Email:</p>
+          <input type="text" name="email-register">
+        </div>
+        <div>
+          <p>Username:</p>
+          <input type="text" name="username-register">
+        </div>
+        <div>
+          <p>Password:</p>
+          <input type="password" name="password-register">
+        </div>
+        <input type="submit" value="Register">
+      </form>
+    </div>
+
+    <div id="login-form">
+      <form name="login" id="login">
+        <div>
+          <p>Username:</p>
+          <input type="text" name="username-login">
+        </div>
+        <div>
+          <p>Password:</p>
+          <input type="password" name="password-login">
+        </div>
+        <input type="submit" value="Login">
+      </form>
+    </div>
   </div>
 
-  <div id="register-form" class="removed">
-    <form name="register" id="register">
-      <div>
-        <p>Email:</p>
-        <input type="text" name="email-register">
-      </div>
-      <div>
-        <p>Username:</p>
-        <input type="text" name="username-register">
-      </div>
-      <div>
-        <p>Password:</p>
-        <input type="password" name="password-register">
-      </div>
-      <input type="submit" value="Register">
-    </form>
-  </div>
+  <div id="error-message"></div>
 
   <div id="chat" class="removed">
     <form name="message_send">

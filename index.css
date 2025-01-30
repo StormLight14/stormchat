@@ -12,6 +12,16 @@ input {
   margin-bottom: 0.8em;
 }
 
+#error-message {
+  color: #FF0000;
+}
+
+.forms {
+  display: flex;
+  flex-direction: row;
+  gap: 3em;
+}
+
 .doom {
   width: 80vw;
   height: 50vw;

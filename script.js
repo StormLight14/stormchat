@@ -7,6 +7,11 @@ async function connect() {
       resolve(socket);
     };
 
+    socket.onclose = function(event) {
+      console.log(`WebSocket closed. Reconnecting... (Code: ${event.code})`);
+      setTimeout(connect, 1000); // Reconnect after 1 sec
+    };
+
     socket.onerror = function (error) {
       console.log(error);
       reject(error);
@@ -31,8 +36,6 @@ async function connect() {
 
       socket.send(`REGISTER,${username},${password},${email}`);
       this.reset();
-      document.getElementById("register-form").classList.add("removed");
-      document.getElementById("login-form").classList.remove("removed");
       return false;
     };
 
@@ -44,8 +47,6 @@ async function connect() {
 
       socket.send(`LOGIN,${username},${password},"NULL"`);
       this.reset();
-      document.getElementById("login-form").classList.add("removed");
-      document.getElementById("chat").classList.remove("removed");
       return false;
     };
 
@@ -58,7 +59,24 @@ async function connect() {
     }
 
     socket.onmessage = function(event) {
-      let msg = event.data;
+      let split_msg = event.data.split(",");
+      
+      let msg_type = split_msg[0];
+      let msg = `[${split_msg[1]}]: ${split_msg[2]}`;
+
+      if (msg_type === "LOGIN_SUCCESS") {
+        document.getElementById("error-message").textContent = "";
+        document.getElementById("chat").classList.remove("removed");
+        document.getElementById("register-form").classList.add("removed");
+        document.getElementById("login-form").classList.add("removed");
+        return; // don't show this message
+      }
+
+      if (msg_type === "LOGIN_ERROR") {
+        document.getElementById("error-message").textContent = "Error logging in."
+        return;
+      }
+      
       console.log(msg);
       if (msg == `[${username}]: !givemedoom`) {
         let doomElement = document.createElement("iframe");
