@@ -60,7 +60,7 @@ async function connect() {
 
       if (msg ==`[${username}]: !givemerick`) {
         let video = document.createElement("video");
-        video.controls = false;
+        video.controls = true;
         video.autoplay = true;
         video.classList.add("rick");
 
