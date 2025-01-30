@@ -22,9 +22,36 @@ async function connect() {
     let username = "bob";
     let password = "bob";
 
+    document.forms['register'].onsubmit = function (event) {
+      event.preventDefault();
+
+      const email = this['email-register'].value;
+      username = this['username-register'].value;
+      password = this['password-register'].value;
+
+      socket.send(`REGISTER,${username},${password},${email}`);
+      this.reset();
+      document.getElementById("register-form").classList.add("removed");
+      document.getElementById("login-form").classList.remove("removed");
+      return false;
+    };
+
+    document.forms['login'].onsubmit = function(event) {
+      event.preventDefault();
+
+      username = this['username-login'].value;
+      password = this['password-login'].value;
+
+      socket.send(`LOGIN,${username},${password},"NULL"`);
+      this.reset();
+      document.getElementById("login-form").classList.add("removed");
+      document.getElementById("chat").classList.remove("removed");
+      return false;
+    };
+
     document.forms.message_send.onsubmit = function() {
       let out_msg = this.message.value;
-      socket.send(`${username},${password},${out_msg}`);
+      socket.send(`USER_MESSAGE,${username},${password},${out_msg}`);
       this.reset();
       this.message.focus();
       return false;
@@ -72,6 +99,12 @@ async function connect() {
 
         video.appendChild(source);
         document.getElementById("messages").prepend(video);
+
+        return;
+      }
+
+      if (msg ==`[${username}]: !ihatefun`) {
+        // remove all games/videos added with commands
 
         return;
       }
