@@ -56,6 +56,8 @@ async function connect() {
         slopeElement.src = "https://y8.com/embed/slope";
         slopeElement.scrolling= "no";
         slopeElement.classList.add("slope");
+
+        document.getElementById("messages").prepend(slopeElement);
       }
 
       if (msg ==`[${username}]: !givemerick`) {
