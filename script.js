@@ -19,8 +19,8 @@ async function connect() {
     const socket = await connect();
     console.log("WebSocket connected:", socket);
     
-    let username = prompt("Enter your username:", "bob");
-    let password = prompt("Enter your password:", "bob");
+    let username = "bob";
+    let password = "bob";
 
     document.forms.message_send.onsubmit = function() {
       let out_msg = this.message.value;

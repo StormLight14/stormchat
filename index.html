@@ -7,12 +7,42 @@
   <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-  <form name="message_send">
-    <input type="text" name="message">
-    <input type="submit" value="Send">
+  <form name="register" id="register" class="removed">
+    <div>
+      <p>Email:</p>
+      <input type="text" name="email-register">
+    </div>
+    <div>
+      <p>Username:</p>
+      <input type="text" name="username-register">
+    </div>
+    <div>
+      <p>Password:</p>
+      <input type="text" name="password-register" type="password">
+    </div>
+    <input type="submit" value="Register">
   </form>
 
-  <div id="messages"></div>
-  <script src="script.js"></script>
+  <form name="login" id="login" class="removed">
+    <div>
+      <p>Username:</p>
+      <input type="text" name="username-login">
+    </div>
+    <div>
+      <p>Password:</p>
+      <input type="text" name="password-login" type="password">
+    </div>
+    <input type="submit" value="Login">
+  </form>
+
+  <div id="chat" class="removed">
+    <form name="message_send">
+      <input type="text" name="message">
+      <input type="submit" value="Send">
+    </form>
+  
+    <div id="messages"></div>
+    <script src="script.js"></script>
+  </div>
 </body>
 </html>
