@@ -40,6 +40,12 @@ input {
   margin: 0.1em;
 }
 
+.drippy {
+  width: 30vw;
+  height: 50vw;
+  margin: 0.1em;
+}
+
 .slope {
   width: 80vw;
   height: 50vw;

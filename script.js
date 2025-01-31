@@ -121,6 +121,22 @@ async function connect() {
         return;
       }
 
+      if (msg ==`[${username}]: !drippybozo`) {
+        let video = document.createElement("video");
+        video.controls = true;
+        video.autoplay = true;
+        video.classList.add("drippy");
+
+        let source = document.createElement("source");
+        source.src = "https://stormyyy.dev/media/drippy.mp4";
+        source.type = "video/mp4";
+
+        video.appendChild(source);
+        document.getElementById("messages").prepend(video);
+
+        return;
+      }
+
       if (msg ==`[${username}]: !ihatefun`) {
         // remove all games/videos added with commands
 
