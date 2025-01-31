@@ -64,7 +64,7 @@ async function connect() {
       let msg_type = split_msg[0];
       let msg = `[${split_msg[1]}]: ${split_msg[2]}`;
 
-      if (msg_type === "LOGIN_SUCCESS") {
+      if (msg_type === "RESPONSE_LOGIN_SUCCESS") {
         document.getElementById("error-message").textContent = "";
         document.getElementById("chat").classList.remove("removed");
         document.getElementById("register-form").classList.add("removed");
@@ -72,7 +72,7 @@ async function connect() {
         return; // don't show this message
       }
 
-      if (msg_type === "LOGIN_ERROR") {
+      if (msg_type === "RESPONSE_LOGIN_FAIL") {
         document.getElementById("error-message").textContent = "Error logging in."
         return;
       }
