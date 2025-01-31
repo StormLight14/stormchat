@@ -77,7 +77,7 @@ async function connect() {
         return;
       }
       
-      console.log(msg);
+      console.log(event.data);
       if (msg == `[${username}]: !givemedoom`) {
         let doomElement = document.createElement("iframe");
         doomElement.src = "https://ustymukhman.github.io/webDOOM/public/";
