@@ -66,15 +66,19 @@ async function connect() {
 
       if (msg_type === "RESPONSE_LOGIN_SUCCESS") {
         document.getElementById("error-message").textContent = "";
+        document.getElementById("response-message").textContent = "";
         document.getElementById("chat").classList.remove("removed");
         document.getElementById("register-form").classList.add("removed");
         document.getElementById("login-form").classList.add("removed");
         return; // don't show this message
-      }
-
-      if (msg_type === "RESPONSE_LOGIN_FAIL") {
-        document.getElementById("error-message").textContent = "Error logging in."
+      } else if (msg_type === "RESPONSE_LOGIN_FAIL") {
+        document.getElementById("error-message").textContent = "Error logging in.";
+        document.getElementById("response-message").textContent = "";
         return;
+      } else if (msg_type === "RESPONSE_REGISTER_SUCCESS") {
+        document.getElementById("error-message").textContent = "";
+        document.getElementById("response-message").textContent = `Registered as ${username} successfully!`
+        document.getElementById("register-form").classList.add("removed");
       }
       
       console.log(event.data);
