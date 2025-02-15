@@ -45,11 +45,11 @@
   <div id="response-message"></div>
 
   <div id="chat" class="removed">
-    <form name="message_send">
-      <input type="text" name="message" placeholder="Type a message...">
+    <div id="messages"></div>
+    <form name="message_send" class="message-send">
+      <input type="text" name="message" autocomplete="off" placeholder="Type a message...">
       <input type="submit" value="Send">
     </form>
-    <div id="messages"></div>
   </div>
 
   <script src="script.js"></script>

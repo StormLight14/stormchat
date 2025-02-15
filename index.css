@@ -10,11 +10,34 @@ p {
 }
 
 input {
-  margin-bottom: 0.8em;
+  margin-bottom: 0.6em;
 }
 
 #error-message {
   color: #FF0000;
+}
+
+#messages {
+  display: flex;
+  flex-direction: column-reverse;
+  min-height: 95vh;
+  max-height: 95vh;
+}
+
+.message-send {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+
+.message-send {
+  display: flex;
+  flex-direction: row;
+  gap: 0.1em;
+  width: 100;
+}
+
+.message-send input[type=text] {
+  width: 100%;
 }
 
 .forms {
