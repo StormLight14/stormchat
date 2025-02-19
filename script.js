@@ -64,7 +64,7 @@ async function connect() {
       
       let msg_type = split_msg[0];
       let msg_username = split_msg[1];
-      let msg = split_msg[2];
+      let msg = split_msg.slice(2).join(",").trim();
       if (msg) {
         msg = msg.trim();
       }
