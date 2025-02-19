@@ -24,8 +24,9 @@ async function connect() {
     const socket = await connect();
     console.log("WebSocket connected:", socket);
     
-    let username = "bob";
-    let password = "bob";
+    let username = "";
+    let password = "";
+    let last_sender = "";
 
     document.forms['register'].onsubmit = function (event) {
       event.preventDefault();
@@ -62,7 +63,8 @@ async function connect() {
       let split_msg = event.data.split(",");
       
       let msg_type = split_msg[0];
-      let msg = `[${split_msg[1]}]: ${split_msg[2]}`;
+      let msg_username = split_msg[1];
+      let msg = split_msg[2];
 
       if (msg_type === "RESPONSE_LOGIN_SUCCESS") {
         document.getElementById("error-message").textContent = "";
@@ -107,6 +109,7 @@ async function connect() {
         slopeElement.classList.add("slope");
 
         document.getElementById("messages").prepend(slopeElement);
+        return;
       }
 
       if (msg ==`[${username}]: !givemerick`) {
@@ -148,8 +151,22 @@ async function connect() {
       }
 
       let msgElement = document.createElement("div");
-      msgElement.textContent = msg;
+      msgElement.classList = "message";
+      
+      if (last_sender != msg_username) {
+        let msgHeading = document.createElement("div");
+        msgHeading.classList = "message-heading";
+        msgHeading.innerText = msg_username;
+        msgElement.appendChild(msgHeading);
+      }
+      
+      let msgContent = document.createElement("div");
+      msgContent.classList = "message-content";
+      msgContent.textContent = msg;
+      msgElement.appendChild(msgContent);
       document.getElementById("messages").prepend(msgElement);
+
+      last_sender = msg_username;
     }
 
     setInterval(() => {

@@ -24,9 +24,27 @@ input {
   max-height: 95vh;
 }
 
+.message {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-heading {
+  margin-top: 0.65em;
+  font-weight: bold;
+}
+
+.message-content {
+
+}
+
 .message-send {
   margin-top: 0.5em;
   margin-bottom: 0;
+}
+
+textarea {
+  resize: none;
 }
 
 .message-send {
