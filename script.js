@@ -99,6 +99,7 @@ async function connect() {
         msgElement.appendChild(msgHeading);
       }
 
+      let sent_command = false;
       if (msg_username.trim() == "admin" || msg_username.trim() == username) {
         if (msg == "!givemedoom") {
           let doomElement = document.createElement("iframe");
@@ -106,6 +107,7 @@ async function connect() {
           doomElement.classList.add("doom");
 
           msgElement.appendChild(doomElement);
+          sent_command = true;
         }
 
         if (msg == "!minecraftforfree") {
@@ -116,16 +118,17 @@ async function connect() {
           msgElement.appendChild(mcElement);
         }
 
-        if (msg == "givemeslope") {
+        if (msg == "!givemeslope") {
           let slopeElement = document.createElement("iframe");
           slopeElement.src = "https://y8.com/embed/slope";
           slopeElement.scrolling= "no";
           slopeElement.classList.add("slope");
 
           msgElement.appendChild(slopeElement);
+          sent_command = true;
         }
 
-        if (msg == "givemerick") {
+        if (msg == "!givemerick") {
           let video = document.createElement("video");
           video.controls = true;
           video.autoplay = true;
@@ -137,9 +140,10 @@ async function connect() {
 
           video.appendChild(source);
           msgElement.appendChild(video);
+          sent_command = true;
         }
 
-        if (msg == "drippybozo") {
+        if (msg == "!drippybozo") {
           let video = document.createElement("video");
           video.controls = true;
           video.autoplay = true;
@@ -151,6 +155,7 @@ async function connect() {
 
           video.appendChild(source);
           msgElement.appendChild(video);
+          sent_command = true;
         }
 
         if (msg == "ihatefun") {
@@ -160,10 +165,13 @@ async function connect() {
         }
       }
       
-      let msgContent = document.createElement("div");
-      msgContent.classList = "message-content";
-      msgContent.textContent = msg;
-      msgElement.appendChild(msgContent);
+      if (!sent_command) { // won't show sent commands to user
+        let msgContent = document.createElement("div");
+        msgContent.classList = "message-content";
+        msgContent.textContent = msg;
+        msgElement.appendChild(msgContent);
+      }
+      
       document.getElementById("messages").prepend(msgElement);
 
       last_sender = msg_username;
