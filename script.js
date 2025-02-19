@@ -69,7 +69,6 @@ async function connect() {
         msg = msg.trim();
       }
       
-
       if (msg_type === "RESPONSE_LOGIN_SUCCESS") {
         document.getElementById("error-message").textContent = "";
         document.getElementById("response-message").textContent = "";
@@ -85,6 +84,7 @@ async function connect() {
         document.getElementById("error-message").textContent = "";
         document.getElementById("response-message").textContent = `Registered as ${username} successfully!`
         document.getElementById("register-form").classList.add("removed");
+        return;
       }
 
       console.log(event.data);
