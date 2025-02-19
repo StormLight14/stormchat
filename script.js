@@ -65,6 +65,10 @@ async function connect() {
       let msg_type = split_msg[0];
       let msg_username = split_msg[1];
       let msg = split_msg[2];
+      if (msg) {
+        msg = msg.trim();
+      }
+      
 
       if (msg_type === "RESPONSE_LOGIN_SUCCESS") {
         document.getElementById("error-message").textContent = "";
@@ -82,82 +86,78 @@ async function connect() {
         document.getElementById("response-message").textContent = `Registered as ${username} successfully!`
         document.getElementById("register-form").classList.add("removed");
       }
-      
+
       console.log(event.data);
-      if (msg == `[${username}]: !givemedoom`) {
-        let doomElement = document.createElement("iframe");
-        doomElement.src = "https://ustymukhman.github.io/webDOOM/public/";
-        doomElement.classList.add("doom");
-
-        document.getElementById("messages").prepend(doomElement);
-        return;
-      }
-
-      if (msg == `[${username}]: !minecraftforfree`) {
-        let mcElement = document.createElement("iframe");
-        mcElement.src = "https://games.stormyyy.dev/minecraft";
-        mcElement.classList.add("minecraft");
-
-        document.getElementById("messages").prepend(mcElement);
-        return;
-      }
-
-      if (msg == `[${username}]: !givemeslope`) {
-        let slopeElement = document.createElement("iframe");
-        slopeElement.src = "https://y8.com/embed/slope";
-        slopeElement.scrolling= "no";
-        slopeElement.classList.add("slope");
-
-        document.getElementById("messages").prepend(slopeElement);
-        return;
-      }
-
-      if (msg ==`[${username}]: !givemerick`) {
-        let video = document.createElement("video");
-        video.controls = true;
-        video.autoplay = true;
-        video.classList.add("rick");
-
-        let source = document.createElement("source");
-        source.src = "https://dn720407.ca.archive.org/0/items/rick-roll/Rick%20Roll.mp4";
-        source.type = "video/mp4";
-
-        video.appendChild(source);
-        document.getElementById("messages").prepend(video);
-
-        return;
-      }
-
-      if (msg ==`[${username}]: !drippybozo`) {
-        let video = document.createElement("video");
-        video.controls = true;
-        video.autoplay = true;
-        video.classList.add("drippy");
-
-        let source = document.createElement("source");
-        source.src = "https://stormyyy.dev/media/drippy.mp4";
-        source.type = "video/mp4";
-
-        video.appendChild(source);
-        document.getElementById("messages").prepend(video);
-
-        return;
-      }
-
-      if (msg ==`[${username}]: !ihatefun`) {
-        // remove all games/videos added with commands
-
-        return;
-      }
 
       let msgElement = document.createElement("div");
       msgElement.classList = "message";
-      
-      if (last_sender != msg_username) {
+
+      if (last_sender != msg_username) { // only show username if a new user sent
         let msgHeading = document.createElement("div");
         msgHeading.classList = "message-heading";
         msgHeading.innerText = msg_username;
         msgElement.appendChild(msgHeading);
+      }
+
+      if (msg_username.trim() == "admin" || msg_username.trim() == username) {
+        if (msg == "!givemedoom") {
+          let doomElement = document.createElement("iframe");
+          doomElement.src = "https://ustymukhman.github.io/webDOOM/public/";
+          doomElement.classList.add("doom");
+
+          msgElement.appendChild(doomElement);
+        }
+
+        if (msg == "!minecraftforfree") {
+          let mcElement = document.createElement("iframe");
+          mcElement.src = "https://games.stormyyy.dev/minecraft";
+          mcElement.classList.add("minecraft");
+
+          msgElement.appendChild(mcElement);
+        }
+
+        if (msg == "givemeslope") {
+          let slopeElement = document.createElement("iframe");
+          slopeElement.src = "https://y8.com/embed/slope";
+          slopeElement.scrolling= "no";
+          slopeElement.classList.add("slope");
+
+          msgElement.appendChild(slopeElement);
+        }
+
+        if (msg == "givemerick") {
+          let video = document.createElement("video");
+          video.controls = true;
+          video.autoplay = true;
+          video.classList.add("rick");
+
+          let source = document.createElement("source");
+          source.src = "https://dn720407.ca.archive.org/0/items/rick-roll/Rick%20Roll.mp4";
+          source.type = "video/mp4";
+
+          video.appendChild(source);
+          msgElement.appendChild(video);
+        }
+
+        if (msg == "drippybozo") {
+          let video = document.createElement("video");
+          video.controls = true;
+          video.autoplay = true;
+          video.classList.add("drippy");
+
+          let source = document.createElement("source");
+          source.src = "https://stormyyy.dev/media/drippy.mp4";
+          source.type = "video/mp4";
+
+          video.appendChild(source);
+          msgElement.appendChild(video);
+        }
+
+        if (msg == "ihatefun") {
+          // remove all games/videos added with commands
+
+          return;
+        }
       }
       
       let msgContent = document.createElement("div");
