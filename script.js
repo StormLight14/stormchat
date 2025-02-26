@@ -65,9 +65,6 @@ async function connect() {
       let msg_type = split_msg[0];
       let msg_username = split_msg[1];
       let msg = split_msg.slice(2).join(",").trim();
-      if (msg) {
-        msg = msg.trim();
-      }
       
       if (msg_type === "RESPONSE_LOGIN_SUCCESS") {
         document.getElementById("error-message").textContent = "";
