@@ -116,6 +116,7 @@ async function connect() {
           mcElement.classList.add("minecraft");
 
           msgElement.appendChild(mcElement);
+          sent_command = true;
         }
 
         if (msg == "!givemeslope") {
@@ -155,6 +156,15 @@ async function connect() {
 
           video.appendChild(source);
           msgElement.appendChild(video);
+          sent_command = true;
+        }
+
+        if (msg == "!givemedonkeykong") {
+          let mcElement = document.createElement("iframe");
+          mcElement.src = "https://freekong.org";
+          mcElement.classList.add("minecraft");
+
+          msgElement.appendChild(mcElement);
           sent_command = true;
         }
 
