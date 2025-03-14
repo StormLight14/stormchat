@@ -1,7 +1,22 @@
 body {
-    background-color: #252533;
-    font-family: Helvetica, sans-serif;
-    color: #FFFFFF;
+  background-color: #252533;
+  font-family: Helvetica, sans-serif;
+  color: #FFFFFF;
+}
+
+button, input[type=submit] {
+  color: #FFFFFF;
+  background-color: #5d0ea7;
+  border-width: 2px;
+  border-radius: 0.5em;
+  border-color: #ac6ce9;
+  border-style: solid;
+  padding: 0.2em 0.5em;
+}
+
+button:active, input[type=submit]:active {
+  background-color: #ac6ce9;
+  border-color: #5d0ea7;
 }
 
 p {
@@ -34,10 +49,6 @@ input {
   font-weight: bold;
 }
 
-.message-content {
-
-}
-
 .message-send {
   margin-top: 0.5em;
   margin-bottom: 0;
@@ -60,31 +71,21 @@ textarea {
 
 .forms {
   display: flex;
-  flex-direction: row;
+  /*flex-direction: row;*/
+  /* justify-content: center; */
+  min-width: 100vw;
   gap: 3em;
 }
 
-.doom {
+.game {
   width: 80vw;
   height: 50vw;
   border: none;
 }
 
-.minecraft {
-  width: 80vw;
-  height: 50vw;
-  border: none;
-}
-
-.rick {
+.video {
   width: 50vw;
   height: 30vw;
-  margin: 0.1em;
-}
-
-.drippy {
-  width: 30vw;
-  height: 50vw;
   margin: 0.1em;
 }
 

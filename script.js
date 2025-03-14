@@ -1,3 +1,5 @@
+const error_message = document.getElementById("error-message");
+
 async function connect() {
   return new Promise((resolve, reject) => {
     const socket = new WebSocket("wss://chat.stormyyy.dev");
@@ -26,6 +28,7 @@ async function connect() {
     
     let username = "";
     let password = "";
+    let confirm_password = "";
     let last_sender = "";
 
     document.forms['register'].onsubmit = function (event) {
@@ -34,6 +37,12 @@ async function connect() {
       const email = this['email-register'].value;
       username = this['username-register'].value;
       password = this['password-register'].value;
+      confirm_password = this['confirm-password-register'].value;
+
+      if (password != confirm_password) {
+        error_message.innerText = "Passwords do not match.";
+        return;
+      }
 
       socket.send(`REGISTER,${username},${password},${email}`);
       this.reset();
@@ -101,7 +110,7 @@ async function connect() {
         if (msg == "!givemedoom") {
           let doomElement = document.createElement("iframe");
           doomElement.src = "https://ustymukhman.github.io/webDOOM/public/";
-          doomElement.classList.add("doom");
+          doomElement.classList.add("game");
 
           msgElement.appendChild(doomElement);
           sent_command = true;
@@ -110,7 +119,7 @@ async function connect() {
         if (msg == "!minecraftforfree") {
           let mcElement = document.createElement("iframe");
           mcElement.src = "https://games.stormyyy.dev/minecraft";
-          mcElement.classList.add("minecraft");
+          mcElement.classList.add("game");
 
           msgElement.appendChild(mcElement);
           sent_command = true;
@@ -130,7 +139,7 @@ async function connect() {
           let video = document.createElement("video");
           video.controls = true;
           video.autoplay = true;
-          video.classList.add("rick");
+          video.classList.add("video");
 
           let source = document.createElement("source");
           source.src = "https://dn720407.ca.archive.org/0/items/rick-roll/Rick%20Roll.mp4";
@@ -145,7 +154,7 @@ async function connect() {
           let video = document.createElement("video");
           video.controls = true;
           video.autoplay = true;
-          video.classList.add("drippy");
+          video.classList.add("video");
 
           let source = document.createElement("source");
           source.src = "https://stormyyy.dev/media/drippy.mp4";
@@ -159,7 +168,7 @@ async function connect() {
         if (msg == "!givemedonkeykong") {
           let mcElement = document.createElement("iframe");
           mcElement.src = "https://freekong.org";
-          mcElement.classList.add("minecraft");
+          mcElement.classList.add("game");
 
           msgElement.appendChild(mcElement);
           sent_command = true;
